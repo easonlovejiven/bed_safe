@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  type: 1
+  price: 1
+  discount: 1
+  top_and_down: 1
+  product_date: 2015-12-03
+
+two:
+  name: MyString
+  type: 1
+  price: 1
+  discount: 1
+  top_and_down: 1
+  product_date: 2015-12-03

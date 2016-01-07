@@ -1,0 +1,90 @@
+<%= render partial: 'layouts/header' %>
+<table class="grid_form">	
+	<%= form_for @user, html: { multipart: true } do |f| %>
+
+		<tr>
+			<th colspan="2">用户注册</th>
+		</tr>
+		<tr>
+			<td class="field"><b>*</b>用户昵称:</td>
+			<td><%= f.text_field :username %></td>
+		</tr>
+
+		<tr>
+			<td class="field"><b>*</b>Email:</td>
+			<td><%= f.text_field :email %></td>
+		</tr>
+
+		<tr>
+			<td class="field">名字:</td>
+			<td><%= f.text_field :realname %></td>
+		</tr>
+
+		<tr>
+			<td class="field">性别:</td>
+			<td>
+				<%= radio_button('user','gender','男') %>&nbsp; 男
+				<%= radio_button('user','gender','女') %>&nbsp; 女 
+			</td>
+		</tr>
+
+		<tr>
+			<td class="field"><b>*</b>密码:</td>
+			<td>
+				<%= f.password_field :password_digest %>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="field"><b>*</b>确认密码:</td>
+			<td>
+				<%= f.password_field :password_confirmation %>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="field">地址:</td>
+			<td>
+				<%= f.select :province, @provinces.collect {|pro| [pro.name, pro.code]} %> &nbsp;&nbsp;
+				<%= f.select :city, @cities.collect {|city| [city.name, city.code]} %>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="field">出生日期:</td>
+			<td>
+				<%= f.date_field :birthday %>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="field">详细地址:</td>
+			<td>
+				<%= f.text_area :detail_address, cols: "40", rows: "6" %>				
+			</td>
+		</tr>
+
+		<tr>
+			<td class="field">头像:</td>
+			<td>
+				<%= f.file_field :avatar %>
+			</td>
+		</tr>
+
+		<tr>
+			<td colspan="2" class="button">
+				<%= f.submit '注册' %>&nbsp;&nbsp;
+				<%= link_to '已注册直接登录', signin_path %>
+			</td>
+		</tr>
+
+	<% end %>
+</table>
+<%= render partial: 'layouts/footer' %>
+<script>
+ $(function(){
+   $("#user_province").change(function(){
+     $.getScript('/ajax/fetch_cities?province_id=' + $(this).val());
+   });
+ });
+</script>

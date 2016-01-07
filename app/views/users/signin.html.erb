@@ -1,0 +1,27 @@
+<%= render partial: 'layouts/header' %>
+<p class="notice"><%= notice %></p>
+<table class="grid_form"> 
+	<%= form_tag '/login_session' do %>
+		<tr>
+			<th colspan="2">用户登录</th>
+		</tr>
+
+		<tr>
+			<td><%= label_tag '用户名' %></td>
+			<td><%= text_field_tag :username, params[:name], placeholder: "请输入昵称/密码" %></td>
+		</tr>
+
+		<tr>
+			<td><%= label_tag '密码' %></td>
+			<td><%= password_field_tag :password, params[:password] %></td>
+		</tr>
+
+		<tr>
+			<td colspan="2" class="button">
+				<%= submit_tag '登录' %>
+			</td>
+		</tr>
+
+	<% end %>
+</table>
+<%= render partial: 'layouts/footer' %>

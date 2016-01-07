@@ -1,0 +1,44 @@
+<%= form_for @product do |f| %>
+<table class="grid_form">
+  <tbody>
+    <tr>
+      <td class="field"><b>*</b>名称:</td>
+      <td>
+        <%= f.text_field :name %>
+      </td>
+    </tr>
+    <tr>
+      <td class="field"><b>*</b>价格:</td>
+      <td>
+        <%= f.text_field :price %>
+      </td>
+    </tr>
+    <tr>
+      <td class="field"><b>*</b>折扣:</td>
+      <td>
+        <%= radio_button("product", "discount", true) %>&nbsp;是&nbsp;&nbsp;
+        <%= radio_button("product", "discount", false) %>&nbsp;否
+      </td>
+    </tr>
+    <tr>
+      <td class="field"><b>*</b>下架:</td>
+      <td>
+        <%= radio_button("product", "top_and_down", true) %>&nbsp;是&nbsp;&nbsp;
+        <%= radio_button("product", "top_and_down", false) %>&nbsp;否
+      </td>
+    </tr>
+    <tr>
+      <td class="field"><b>*</b>产品类型:</td>
+      <td>
+        
+      </td>
+    </tr>
+    <tr>
+      <td class="field"></td>
+      <td>
+        <%= f.submit params[:action] == "edit" ? "修改数据" : "新建数据" %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<% end -%>
