@@ -24,6 +24,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 ##  分页
 gem 'will_paginate', '~> 3.0.6'
 
+gem 'ransack', '~> 1.5.0' # search
+
 # 表单和客户端验证
 gem 'simple_form'
 
