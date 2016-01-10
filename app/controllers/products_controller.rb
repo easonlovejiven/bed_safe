@@ -4,7 +4,9 @@ class ProductsController < ApplicationController
 	before_action :get_type, only: [:new, :create, :edit, :update, :destroy, :show]
 	
 	def index
-		@products = Product.paginate(page: params[:page], per_page: 10)
+		#@products = Product.paginate(page: params[:page], per_page: 10)
+		@q = Product.ransack(params[:q])
+		@products = @q.result.paginate(page: params[:page], per_page: 10)
 	end
 
 	def new	
