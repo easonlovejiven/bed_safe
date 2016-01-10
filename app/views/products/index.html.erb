@@ -4,8 +4,14 @@
     <%= link_to "添加数据", new_product_path %>
   </span>
 	  <%= search_form_for @q do |f| %>
+
 		  <%= f.label "产品名称:" %>
 		  <%= f.search_field :name_cont, placeholder: '请输入产品名称' %>
+
+		  <%= text_field_tag :start_date, params[:start_date], class: "datetimepicker", placeholder: "时间大于", "data-date-format" => "yyyy-mm-dd" %>
+    ~
+   	 	<%= text_field_tag :end_date, params[:end_date], class: "datetimepicker", placeholder: "时间小于", "data-date-format" => "yyyy-mm-dd" %>
+
 	  <%= f.submit "搜索" %>
 <% end %>
 	<table class="grid_form">
@@ -37,3 +43,15 @@
 		<% end %>
 	</table>
 <%= render partial: 'layouts/footer' %>
+
+<script type="text/javascript">
+	$(function(){
+		$('.datetimepicker').datepicker({
+	    autoclose: true,
+	    language: 'ZH',
+	    pickTime: false,
+	    minView: 'month',
+	    format: 'yyyy-mm-dd'
+	  });
+	})
+</script>
