@@ -1,3 +1,4 @@
+<%= javascript_include_tag "admin.js" %>
 <%= render partial: 'layouts/header' %>
 	<%= will_paginate @products %>
 	<span class="title_right">
@@ -8,9 +9,7 @@
 		  <%= f.label "产品名称:" %>
 		  <%= f.search_field :name_cont, placeholder: '请输入产品名称' %>
 
-		  <%= text_field_tag :start_date, params[:start_date], class: "datetimepicker", placeholder: "时间大于", "data-date-format" => "yyyy-mm-dd" %>
-    ~
-   	 	<%= text_field_tag :end_date, params[:end_date], class: "datetimepicker", placeholder: "时间小于", "data-date-format" => "yyyy-mm-dd" %>
+		  <%= f.text_field :created_at_day, class: "datetimepicker", :placeholder => "创建时间", "data-date-format" => "yyyy-MM-dd", value: @created_at_day%>
 
 	  <%= f.submit "搜索" %>
 <% end %>

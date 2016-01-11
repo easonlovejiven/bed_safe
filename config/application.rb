@@ -24,7 +24,7 @@ module BedSafe
     config.encoding = 'utf-8'
     config.assets.enabled = true
     #config.assets.paths << "#{Rails}/vendor/assets/fonts"
-    config.assets.precompile += %w(welcome.css users.css address.js)
+    config.assets.precompile += %w(welcome.css users.css address.js admin.js)
     config.active_record.raise_in_transactional_callbacks = true
   end
 end
