@@ -4,10 +4,8 @@ class ProductsController < ApplicationController
 	before_action :get_type, only: [:new, :create, :edit, :update, :destroy, :show]
 	
 	def index
-		params[:start_date] ||= Date.today.to_s(:db)
-    params[:end_date] ||= Date.today.to_s(:db)
 		@q = Product.ransack(params[:q])
-		@products = @q.result.created_at_day(@created_at_day).paginate(page: params[:page], per_page: 10)
+		@products = @q.result.paginate(page: params[:page], per_page: 10)
 	end
 
 	def new	
