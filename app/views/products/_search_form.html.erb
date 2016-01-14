@@ -1,0 +1,7 @@
+<div class="box">
+	<%= search_form_for @q do |f| %>
+	  <%= f.text_field :name_cont, placeholder: '请输入产品名称' %>
+		<%= f.select :type_id_eq, options_for_select(@types, params[:type_id]) %>
+  	<%= f.submit "搜索" %>
+ 	<% end %>
+</div>

@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
 
 	before_action :get_product, only: [:edit, :show, :destroy, :update]
-	before_action :get_type, only: [:new, :create, :edit, :update, :destroy, :show]
+	before_action :get_type, only: [:new, :create, :edit, :update, :destroy, :show, :index]
 	
 	def index
 		@q = Product.ransack(params[:q])
@@ -15,6 +15,14 @@ class ProductsController < ApplicationController
 	def edit
 	end
 
+	def update
+    if @product.update_attributes(product_params)
+      redirect_to products_path
+    else
+      render :edit
+    end
+  end
+
 	def destroy
     @product.destroy
     redirect_to products_path
@@ -23,7 +31,7 @@ class ProductsController < ApplicationController
 	def create
 		@product = Product.new(product_params)
 	  if @product.save
-	  	redirect_to product_path
+	  	redirect_to products_path
 	  else
 	  	render :new
 		end
@@ -50,6 +58,6 @@ class ProductsController < ApplicationController
   end
 
   def get_type
-  	@types = Type.all.pluck("name")
+  	@types = Type.pluck("name", "id")
   end
 end

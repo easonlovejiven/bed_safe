@@ -1,3 +1,7 @@
+<%= render 'layouts/header' %>
+<span class="title_right">
+  <%= link_to "返回列表", products_path %>
+</span>
 <%= form_for @product do |f| %>
 <table class="grid_form">
   <tbody>
@@ -16,21 +20,22 @@
     <tr>
       <td class="field"><b>*</b>折扣:</td>
       <td>
-        <%= radio_button("product", "discount", true) %>&nbsp;是&nbsp;&nbsp;
-        <%= radio_button("product", "discount", false) %>&nbsp;否
+        <%= radio_button("product", "discount", 1) %>&nbsp;是&nbsp;&nbsp;
+        <%= radio_button("product", "discount", 0) %>&nbsp;否
+        </td>
       </td>
     </tr>
     <tr>
       <td class="field"><b>*</b>下架:</td>
       <td>
-        <%= radio_button("product", "top_and_down", true) %>&nbsp;是&nbsp;&nbsp;
-        <%= radio_button("product", "top_and_down", false) %>&nbsp;否
+        <%= radio_button("product", "top_and_down", 0) %>&nbsp;是&nbsp;&nbsp;
+        <%= radio_button("product", "top_and_down", 1) %>&nbsp;否
       </td>
     </tr>
     <tr>
       <td class="field"><b>*</b>产品类型:</td>
       <td>
-        
+        <%= f.select :type_id, options_for_select(@types, params[:type_id]) %>
       </td>
     </tr>
     <tr>
@@ -42,3 +47,4 @@
   </tbody>
 </table>
 <% end -%>
+<%= render 'layouts/footer' %>

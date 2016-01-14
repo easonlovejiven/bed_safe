@@ -1,0 +1,41 @@
+<%= render 'layouts/header' %>
+	<span class="title_right">
+    <%= link_to "返回列表", products_path %>
+  </span>
+	<table class="grid_form">
+		<tr>
+			<td class="field">产品名称:</td>
+			<td><%= @product.name %></td>
+		</tr>
+
+		<tr>
+			<td class="field">价格¥:</td>
+			<td><%= @product.name %></td>
+		</tr>
+
+		<tr>
+			<td class="field">是否下架:</td>
+			<td><%= Product::DISCOUNT[@product.discount] %></td>
+		</tr>
+
+		<tr>
+			<td class="field">折扣:</td>
+			<td><%= Product::TOP_AND_DOWN[@product.top_and_down] %></td>
+		</tr>
+
+		<tr>
+			<td class="field">入库日期:</td>
+			<td><%= @product.created_at.to_s %></td>
+		</tr>
+
+		<tr>
+			<td class="field">产品类型:</td>
+			<td><%= @product.type.name %></td>
+		</tr>
+
+		<tr>
+			<td class="field">产品名称:</td>
+			<td>@product.name</td>
+		</tr>
+	</table>
+<%= render 'layouts/footer' %>

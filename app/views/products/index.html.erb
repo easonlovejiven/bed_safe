@@ -1,14 +1,9 @@
-<%= javascript_include_tag "admin.js" %>
-<%= render partial: 'layouts/header' %>
+<%= render 'layouts/header' %>
 	<%= will_paginate @products %>
 	<span class="title_right">
     <%= link_to "添加数据", new_product_path %>
   </span>
-	  <%= search_form_for @q do |f| %>
-		  <%= f.text_field :name_cont, placeholder: '请输入产品名称' %>
-			<%= f.select :type_id_eq, options_for_select(Type.pluck("name", "id"), params[:type_id]) %>
-	  <%= f.submit "搜索" %>
-<% end %>
+  <%= render 'search_form' %>
 	<table class="grid_form">
 		<tr>
 			<th>ID</th>
@@ -36,5 +31,6 @@
 				</td>
 			</tr>
 		<% end %>
+		<%= blank_table(8) if @products.blank? -%>
 	</table>
-<%= render partial: 'layouts/footer' %>
+<%= render 'layouts/footer' %>
