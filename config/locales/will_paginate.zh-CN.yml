@@ -1,0 +1,21 @@
+en:
+  will_paginate:
+    previous_label: "&#8592; Previous"
+    next_label: "Next &#8594;"
+    page_gap: "&hellip;"
+zh-CN:
+  will_paginate:
+    previous_label: "上一页"
+    next_label: "下一页"
+    page_gap: "&hellip;"
+    page_entries_info:
+      single_page:
+        zero:  "全部: 0"
+        one:   "全部: 1"
+        other: "全部: %{count}"
+      single_page_html:
+        zero:  "全部: <b>0</b>"
+        one:   "全部: <b>1</b> "
+        other: "全部: <b>%{count}</b> "
+      multi_page: "当前：  %{from} - %{to} / 总数： %{count}"
+      multi_page_html: "当前： <b>%{from}&nbsp;-&nbsp;%{to}</b> / 总数： <b>%{count}</b> "

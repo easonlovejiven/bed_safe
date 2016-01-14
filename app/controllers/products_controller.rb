@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
 	
 	def index
 		@q = Product.ransack(params[:q])
-		@products = @q.result.paginate(page: params[:page], per_page: 10)
+		@products = @q.result.paginate(page: params[:page], per_page: 10).order("id DESC")
 	end
 
 	def new	
