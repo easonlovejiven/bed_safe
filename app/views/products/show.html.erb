@@ -34,8 +34,8 @@
 		</tr>
 
 		<tr>
-			<td class="field">产品名称:</td>
-			<td>@product.name</td>
+			<td class="field">图片:</td>
+			<td><%= image_tag @product.image, width: 200, height: 200%></td>
 		</tr>
 	</table>
 <%= render 'layouts/footer' %>

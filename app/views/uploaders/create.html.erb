@@ -1,0 +1,7 @@
+<script type="text/javascript">
+  <% if @upload.blank? %>
+    window.parent.alert("上传出错，请联系开发！");
+  <% else %>
+    window.parent.$.fn.uploader.success("<%= @upload.url %>");
+  <% end %>
+</script>

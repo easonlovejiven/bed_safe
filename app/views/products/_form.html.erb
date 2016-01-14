@@ -39,6 +39,16 @@
       </td>
     </tr>
     <tr>
+      <td class="field">上传图片:</td>
+      <td>
+        <%= f.text_field :image, size: 20 %>
+        <input type="button" id="upload_common_file_btn" value="上传图片"/>
+        <div>
+          <a target="_blank" href="" id="upload_img_a_link"><img src="" id="upload_img" style="max-height:100px"/></a>
+        </div>
+      </td>
+    </tr>
+    <tr>
       <td class="field"></td>
       <td>
         <%= f.submit params[:action] == "edit" ? "修改数据" : "新建数据" %>
@@ -48,3 +58,6 @@
 </table>
 <% end -%>
 <%= render 'layouts/footer' %>
+<script type="text/javascript">
+  $("#upload_common_file_btn").uploader({url_field_id: "product_image", a_link_id: "upload_img_a_link", image_show_id: "upload_img"});
+</script>

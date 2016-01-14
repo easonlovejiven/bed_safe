@@ -9,4 +9,5 @@ Rails.application.routes.draw do
     get :fetch_cities
   end
   resources :products
+  resources :uploaders, only: [:create]
 end

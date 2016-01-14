@@ -24,6 +24,13 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 ##  分页
 gem 'will_paginate', '~> 3.0.6'
 
+# 文件和图片处理
+gem 'carrierwave', '0.10.0'
+gem 'mini_magick', '3.7.0'
+gem 'carrierwave-azure', '0.0.3'
+gem 'carrierwave-mongoid'
+
+#搜索
 gem 'ransack', '~> 1.5.0' # search
 
 # 表单和客户端验证

@@ -14,6 +14,7 @@
 			<th>上下架</th>
 			<th>入库时间</th>
 			<th>类型</th>
+			<th>产品图片</th>
 			<th>操作</th>
 		</tr>
 		<% @products.each do |p| %>
@@ -25,6 +26,9 @@
 				<td><%= Product::TOP_AND_DOWN[p.top_and_down] %></td>
 				<td><%= p.created_at.to_s %></td>
 				<td><%= p.type.name %></td>
+				<td>
+					<%= image_tag p.image, width: 100, height: 100%>
+				</td>
 				<td>
           <%= link_to '详情', p %>
           <%= link_to '编辑', [:edit, p] %>
