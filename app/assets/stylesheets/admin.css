@@ -1,13 +1,8 @@
 .page_info{ margin-top: 10px; margin-left: 15px; }
 .page_info b{ color:#329BCB; }
-.page_info .left{float: left;}
-.page_info .right{float: right;margin:0px 12px 5px 0px;color: red;}
+.page_info .left{ float: left; }
+.page_info .right{ float: right;margin:0px 12px 5px 0px;color: red; }
 /* 上传图片图层css */
-#real_avatar {
-  cursor: pointer;
-  position: absolute;
-  opacity: 0;
-  width: 0px;
-  height: 0px;
-  filter: alpha(opacity=0);
-}
+#real_avatar { cursor: pointer;position: absolute;opacity: 0;width: 0px;height: 0px;filter: alpha(opacity=0); }
+/* 分页国际化 */
+#pagination{}

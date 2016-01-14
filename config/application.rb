@@ -8,5 +8,6 @@ module BedSafe
     config.assets.enabled = true
     config.assets.precompile += %w(welcome.css users.css product.css address.js admin.css upload.js)
     config.active_record.raise_in_transactional_callbacks = true
+    config.i18n.default_locale = 'zh-CN'
   end
 end
