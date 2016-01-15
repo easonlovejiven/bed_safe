@@ -17,6 +17,14 @@
   <%= page_info(@products) %>
 	<table class="grid_form">
 		<tr>
+      <td colspan="11" style="text-align:right;">
+        <a style="color:red !important;" href="#" onclick="get_checkbox()">删除</a>
+      </td>
+    </tr>
+		<tr>
+			<th>
+        <input type="checkbox" class="top_tree">
+      </th>
 			<th>ID</th>
 			<th>名称</th>
 			<th>价格</th>
@@ -29,7 +37,10 @@
 			<th width="16%">操作</th>
 		</tr>
 		<% @products.each do |p| %>
-			<tr>
+			<tr id="check_<%= p.id %>">
+				<td width="20px;">
+          <input type="checkbox" class="bottom_tree" value="<%= p.id %>">
+        </td>
 				<td><%= p.id %></td>
 				<td><%= p.name %></td>
 				<td><%= p.price %></td>
@@ -44,13 +55,12 @@
 				<td class="action">
           <%= link_to '详情', p %>
           <%= link_to '编辑', [:edit, p] %>
-          <%= link_to '删除', p, method: :delete, data: {confirm: "你确定删除吗？"} %>
           <%= link_to p.top_and_down? ? "下架" : "上架", change_top_and_down_product_path(id: p.id), method: :post, data: {confirm: p.top_and_down? ? "确定下架吗?" : "确定上架吗?"} %>
           <%= link_to p.discount? ? "取消活动" : "搞活动", change_discount_product_path(id: p.id), method: :post, data: {confirm: p.discount? ? "确定取消吗?" : "确定设置吗?"}%>
 				</td>
 			</tr>
 		<% end %>
-		<%= blank_table(10) if @products.blank? -%>
+		<%= blank_table(11) if @products.blank? -%>
 	</table>	
 <%= render 'layouts/footer' %>
 <%= will_paginate @products %>

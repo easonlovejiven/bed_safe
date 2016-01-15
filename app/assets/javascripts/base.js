@@ -26,4 +26,60 @@ $(function() {
     }
   });
 
+  //批量删除规范
+  $('.top_tree').click(function(){
+    $('.bottom_tree').prop('checked','checked');
+    if(this.checked){
+      $('.bottom_tree').prop("checked",true)
+    }else{
+      $('.bottom_tree').prop("checked",false)
+    }
+  });
+  $('.bottom_tree').click(function(){
+    var count = 0;
+    var checkArry = $('.bottom_tree');
+    for (var i = 0; i < checkArry.length; i++) { 
+      if(checkArry[i].checked == true){
+        count++;
+      }
+    }
+    if(count == checkArry.length){
+      $('.top_tree').prop("checked",true)
+    }else{
+      $('.top_tree').prop("checked",false)
+    }
+  });
+
  });
+
+
+  // 删除选中的product 执行删除操作
+  function get_checkbox(){
+    ids = []
+    ids = get_checkout_ids();
+    if(ids.length > 0){
+      var c = confirm("你确定删除吗？")
+      if (c == true) {
+        $.post("/products/ajax_del_product?ids="+ids,{},function(){
+          location.reload();
+        })
+      }else{
+        location.reload();
+      }
+    }else{
+      alert("请选择要删除的消息!")
+    }
+  }
+
+  // 选中ids
+  function get_checkout_ids(){
+    var ids = [];
+    var bottoms = $('.bottom_tree')
+    for(var i=0;i<bottoms.length;i++){  
+      if(bottoms[i].checked){
+        ids.push(bottoms[i].value)
+        $("#check_"+i).remove();
+      }
+    }
+    return ids
+  }

@@ -1,13 +1,12 @@
 class ProductsController < ApplicationController
 
 	before_action :get_product, only: [:edit, :show, :destroy, :update, :change_top_and_down, :change_discount]
-	before_action :get_type, only: [:new, :create, :edit, :update, :destroy, :show, :index]
+	before_action :get_type, only: [:new, :create, :edit, :update, :show, :index]
 	
 	def index
 		@q = Product.ransack(params[:q])
 		@q = Product.created_at_gte(params[:created_at_gteq]).created_at_lte(params[:created_at_lteq]).search(params[:q])
 		@products = @q.result.paginate(page: params[:page], per_page: 5).order('id DESC')
-
 	end
 
 	def new	
@@ -25,13 +24,14 @@ class ProductsController < ApplicationController
     end
   end
 
-	def destroy
-    @product.destroy
-    redirect_to products_path
-	end
+  # 改成ajax批量删除
+	# <%= link_to '删除', p, method: :delete, data: {confirm: "你确定删除吗？"} %>
+	# def destroy
+  #   @product.destroy
+  #   redirect_to products_path
+	# end
 
 	def create
-		binding.pry
 		@product = Product.new(product_params)
 	  if @product.save
 	  	redirect_to products_path
@@ -50,12 +50,11 @@ class ProductsController < ApplicationController
     redirect_to :back
 	end
 
-	def destory
-		if @product.update_attributes(product_params)
-      redirect_to products_path
-    else
-      render :edit
-    end
+	def ajax_del_product
+		params[:ids].split(",").each{|id|
+      m = Product.find(id).destroy
+    }
+    render text: "ok"
 	end
 
 	def show

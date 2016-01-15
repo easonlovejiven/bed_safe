@@ -13,6 +13,10 @@ Rails.application.routes.draw do
       post :change_top_and_down
       post :change_discount
     end
+
+    collection do
+      post :ajax_del_product
+    end
   end
   resources :uploaders, only: [:create]
 end
