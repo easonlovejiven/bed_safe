@@ -30,12 +30,17 @@
 
 		<tr>
 			<td class="field">产品类型:</td>
-			<td><%= @product.type.name %></td>
+			<td><%= @product.type.try(:name) %></td>
 		</tr>
 
 		<tr>
 			<td class="field">图片:</td>
 			<td><%= @product.image.present? ? image_tag(@product.image, width: 200, height: 200) : "暂无图片！" %><br/></td>
+		</tr>
+
+		<tr>
+			<td class="field">产品描述:</td>
+			<td><%= @product.describtion %><br/></td>
 		</tr>
 	</table>
 <%= render 'layouts/footer' %>

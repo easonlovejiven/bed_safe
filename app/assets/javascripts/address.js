@@ -1,7 +1,7 @@
 $(function(){
   
   area.liveClick();
-  area.init();  
+  area.init();
   
 })
 

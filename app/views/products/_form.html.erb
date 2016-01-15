@@ -20,16 +20,16 @@
     <tr>
       <td class="field"><b>*</b>折扣:</td>
       <td>
-        <%= radio_button("product", "discount", 1) %>&nbsp;是&nbsp;&nbsp;
-        <%= radio_button("product", "discount", 0) %>&nbsp;否
+        <%= radio_button("product", "discount", true) %>&nbsp;是&nbsp;&nbsp;
+        <%= radio_button("product", "discount", false) %>&nbsp;否
         </td>
       </td>
     </tr>
     <tr>
       <td class="field"><b>*</b>下架:</td>
       <td>
-        <%= radio_button("product", "top_and_down", 0) %>&nbsp;是&nbsp;&nbsp;
-        <%= radio_button("product", "top_and_down", 1) %>&nbsp;否
+        <%= radio_button("product", "top_and_down", false) %>&nbsp;是&nbsp;&nbsp;
+        <%= radio_button("product", "top_and_down", true) %>&nbsp;否
       </td>
     </tr>
     <tr>
@@ -46,6 +46,12 @@
         <div>
           <a target="_blank" href="" id="upload_img_a_link"><img src="" id="upload_img" style="max-height:100px"/></a>
         </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="field">产品描述:</td>
+      <td>
+        <%= f.text_area :describtion, size: "50x10" %>
       </td>
     </tr>
     <tr>

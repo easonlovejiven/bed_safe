@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160114081204) do
+ActiveRecord::Schema.define(version: 20160114103536) do
 
   create_table "person", id: false, force: :cascade do |t|
     t.integer "number", limit: 4
@@ -27,13 +27,15 @@ ActiveRecord::Schema.define(version: 20160114081204) do
 
   create_table "products", force: :cascade do |t|
     t.string   "name",         limit: 255
-    t.integer  "price",        limit: 4
-    t.integer  "discount",     limit: 4,   default: 1
-    t.integer  "top_and_down", limit: 4,   default: 1
+    t.decimal  "price",                      precision: 10, default: 0
+    t.boolean  "discount",                                  default: true
+    t.boolean  "top_and_down",                              default: true
     t.date     "product_date"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.datetime "created_at",                                               null: false
+    t.datetime "updated_at",                                               null: false
     t.integer  "type_id",      limit: 4
+    t.string   "image",        limit: 255
+    t.text     "describtion",  limit: 65535
   end
 
   create_table "students", force: :cascade do |t|

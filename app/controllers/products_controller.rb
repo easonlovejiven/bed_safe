@@ -31,6 +31,7 @@ class ProductsController < ApplicationController
 	end
 
 	def create
+		binding.pry
 		@product = Product.new(product_params)
 	  if @product.save
 	  	redirect_to products_path
@@ -40,12 +41,12 @@ class ProductsController < ApplicationController
 	end
 
 	def change_top_and_down
-		@product.top_and_down? ? @product.update(top_and_down: 0) : @product.update(top_and_down: 1)
+		@product.top_and_down? ? @product.update(top_and_down: false) : @product.update(top_and_down: true)
     redirect_to :back
 	end
 
 	def change_discount
-		@product.discount? ? @product.update(discount: 0) : @product.update(discount: 1)
+		@product.discount? ? @product.update(discount: false) : @product.update(discount: true)
     redirect_to :back
 	end
 
@@ -62,7 +63,7 @@ class ProductsController < ApplicationController
 
 	private
 	def product_params
-		params.require(:product).permit(:name, :price, :discount, :top_and_down, :product_date, :type_id, :image)
+		params.require(:product).permit(:name, :price, :discount, :top_and_down, :product_date, :type_id, :image, :describtion)
 	end
 
 	def get_product
