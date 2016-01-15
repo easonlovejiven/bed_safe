@@ -12,10 +12,10 @@
 			<th>价格</th>
 			<th>是否有折扣</th>
 			<th>上下架</th>
-			<th>入库时间</th>
+			<th width="20%">入库时间</th>
 			<th>类型</th>
 			<th>产品图片</th>
-			<th>操作</th>
+			<th width="16%">操作</th>
 		</tr>
 		<% @products.each do |p| %>
 			<tr>
@@ -26,14 +26,15 @@
 				<td><%= Product::TOP_AND_DOWN[p.top_and_down] %></td>
 				<td><%= p.created_at.to_s %></td>
 				<td><%= p.type.name %></td>
-				
 				<td>
-					<%= image_tag p.image, width: 100, height: 100%>
+					<%= p.image.present? ? image_tag(p.image, width: 100, height: 100) : "暂无图片！" %>
 				</td>
-				<td>
+				<td class="action">
           <%= link_to '详情', p %>
           <%= link_to '编辑', [:edit, p] %>
           <%= link_to '删除', p, method: :delete, data: {confirm: "你确定删除吗？"} %>
+          <%= link_to p.top_and_down? ? "下架" : "上架", change_top_and_down_product_path(id: p.id), method: :post, data: {confirm: p.top_and_down? ? "确定下架吗?" : "确定上架吗?"}%>
+          <%= link_to p.discount? ? "取消活动" : "搞活动", change_discount_product_path(id: p.id), method: :post, data: {confirm: p.discount? ? "确定取消吗?" : "确定设置吗?"}%>
 				</td>
 			</tr>
 		<% end %>

@@ -35,7 +35,7 @@
 
 		<tr>
 			<td class="field">图片:</td>
-			<td><%= image_tag @product.image, width: 200, height: 200%></td>
+			<td><%= @product.image.present? ? image_tag(@product.image, width: 200, height: 200) : "暂无图片！" %><br/></td>
 		</tr>
 	</table>
 <%= render 'layouts/footer' %>

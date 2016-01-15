@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
 
-	before_action :get_product, only: [:edit, :show, :destroy, :update]
+	before_action :get_product, only: [:edit, :show, :destroy, :update, :change_top_and_down, :change_discount]
 	before_action :get_type, only: [:new, :create, :edit, :update, :destroy, :show, :index]
 	
 	def index
@@ -35,6 +35,16 @@ class ProductsController < ApplicationController
 	  else
 	  	render :new
 		end
+	end
+
+	def change_top_and_down
+		@product.top_and_down? ? @product.update(top_and_down: 0) : @product.update(top_and_down: 1)
+    redirect_to :back
+	end
+
+	def change_discount
+		@product.discount? ? @product.update(discount: 0) : @product.update(discount: 1)
+    redirect_to :back
 	end
 
 	def destory
