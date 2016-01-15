@@ -1,9 +1,19 @@
+<%= javascript_include_tag  "/javascripts/datetimepicker/WdatePicker.js" %>
 <%= render 'layouts/header' %>
 	<%= will_paginate @products %>
 	<span class="title_right">
     <%= link_to "添加数据", new_product_path %>
   </span>
-  <%= render 'search_form' %>
+  <div class="box">
+	<%= search_form_for @q do |f| %>
+	  <%= f.text_field :name_cont, placeholder: '请输入产品名称' %>
+		<%= f.select :type_id_eq, options_for_select(@types, params[:type_id]) %>
+		<%= text_field_tag :created_at_gteq, params[:created_at_gteq], class: "datetimepicker", placeholder: "入库时间大于", "data-date-format" => "yyyy-mm-dd" %>
+    ~	
+    <%= text_field_tag :created_at_lteq, params[:created_at_lteq], class: "datetimepicker", placeholder: "入库时间小于", "data-date-format" => "yyyy-mm-dd" %>
+  	<%= f.submit "搜索" %>
+ 	<% end %>
+</div>
   <%= page_info(@products) %>
 	<table class="grid_form">
 		<tr>
@@ -33,12 +43,12 @@
           <%= link_to '详情', p %>
           <%= link_to '编辑', [:edit, p] %>
           <%= link_to '删除', p, method: :delete, data: {confirm: "你确定删除吗？"} %>
-          <%= link_to p.top_and_down? ? "下架" : "上架", change_top_and_down_product_path(id: p.id), method: :post, data: {confirm: p.top_and_down? ? "确定下架吗?" : "确定上架吗?"}%>
+          <%= link_to p.top_and_down? ? "下架" : "上架", change_top_and_down_product_path(id: p.id), method: :post, data: {confirm: p.top_and_down? ? "确定下架吗?" : "确定上架吗?"} %>
           <%= link_to p.discount? ? "取消活动" : "搞活动", change_discount_product_path(id: p.id), method: :post, data: {confirm: p.discount? ? "确定取消吗?" : "确定设置吗?"}%>
 				</td>
 			</tr>
 		<% end %>
-		<%= blank_table(8) if @products.blank? -%>
-	</table>
+		<%= blank_table(9) if @products.blank? -%>
+	</table>	
 <%= render 'layouts/footer' %>
 <%= will_paginate @products %>
