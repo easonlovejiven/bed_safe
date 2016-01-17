@@ -4,20 +4,11 @@
 	<span class="title_right">
     <%= link_to "添加数据", new_product_path %>
   </span>
-  <div class="box">
-	<%= search_form_for @q do |f| %>
-	  <%= f.text_field :name_cont, placeholder: '请输入产品名称' %>
-		<%= f.select :type_id_eq, options_for_select(@types, params[:type_id]) %>
-		<%= text_field_tag :created_at_gteq, params[:created_at_gteq], class: "datetimepicker", placeholder: "入库时间大于", "data-date-format" => "yyyy-mm-dd" %>
-    ~	
-    <%= text_field_tag :created_at_lteq, params[:created_at_lteq], class: "datetimepicker", placeholder: "入库时间小于", "data-date-format" => "yyyy-mm-dd" %>
-  	<%= f.submit "搜索" %>
- 	<% end %>
-</div>
+  <%= render 'search_form' %>
   <%= page_info(@products) %>
 	<table class="grid_form">
 		<tr>
-      <td colspan="11" style="text-align:right;">
+      <td colspan="12" style="text-align:right;">
         <a style="color:red !important;" href="javascript:" onclick="get_checkbox()">删除</a>
       </td>
     </tr>
@@ -32,11 +23,13 @@
 			<th>上下架</th>
 			<th width="20%">入库时间</th>
 			<th>类型</th>
+			<th>生产者</th>
 			<th>产品图片</th>
 			<th>产品描述</th>
 			<th width="16%">操作</th>
 		</tr>
 		<% @products.each do |p| %>
+
 			<tr id="check_<%= p.id %>">
 				<td width="20px;">
           <input type="checkbox" class="bottom_tree" value="<%= p.id %>">
@@ -48,6 +41,7 @@
 				<td><%= Product::TOP_AND_DOWN[p.top_and_down] %></td>
 				<td><%= p.created_at.to_s %></td>
 				<td><%= p.type.try(:name) %></td>
+				<td><%= p.user.username %></td>
 				<td>
 					<%= p.image.present? ? image_tag(p.image, width: 100, height: 100) : "暂无图片！" %>
 				</td>
@@ -60,7 +54,66 @@
 				</td>
 			</tr>
 		<% end %>
-		<%= blank_table(11) if @products.blank? -%>
+		<%= blank_table(12) if @products.blank? -%>
 	</table>	
 <%= render 'layouts/footer' %>
 <%= will_paginate @products %>
+<script type="text/javascript">
+
+	$(function(){
+		// 初始化select2里边儿的值
+	  $("#user_clear").hide();
+	  var product_user = "<%= @product_user %>"
+	  if (product_user.length > 2) {
+	    $("#user_clear").show();
+	    var user_id = "<%= @product_user[0] %>"
+	    var user_name = "<%= @product_user[1] %>"
+	    $("select[name='q[user_id_eq]']:eq(0)").append("<option value="+user_id+"></option>"); 
+	    $("select[name='q[user_id_eq]']:eq(0)").select2("val", user_id)
+	    $("#producter").next().children().children().children().first().get(0).innerHTML = user_name
+
+	    $("#user_clear").click(function(){
+	      $("select[name='q[user_id_eq]']:eq(0)").select2("val", "")
+	      $("#producter").next().children().children().children().first().get(0).innerHTML = "发送者"
+	    });
+	  }
+	});
+
+ // 生产者
+$(".product_user_search").select2({
+  placeholder: "生产者",
+  ajax: {
+    url: "/products/search_user",
+    dataType: 'json',
+    delay: 300,
+    data: function(params){
+      return {
+        q: params.term
+      };
+    },
+    processResults: function (data, page) {
+      return {
+        results: data.users
+      };
+    }
+  },
+  templateResult: formatUser, //显示查询结果
+  templateSelection: formatProducterSelection, //显示选中的对象
+  escapeMarkup: function (markup) { return markup; }
+});
+
+function formatUser (user) {
+  if (user.loading) return user.text; // 返回正在加载数据
+  var markup = "<div style='float:center;color:#4F4F4F;'>"+user.username+"</div> " 
+  return markup;
+}
+
+function formatProducterSelection (producter) {
+  if (producter.username == undefined){
+    return "生产者";
+  } else {
+    return producter.username;
+  }
+}
+
+</script>

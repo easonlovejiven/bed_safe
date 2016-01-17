@@ -1,5 +1,6 @@
 class Product < ActiveRecord::Base
 	belongs_to :type
+	belongs_to :user
 
 	DISCOUNT = { false => "没有折扣", true => "有折扣" } # 默认是有折扣的
   TOP_AND_DOWN = { false => "已下架", true => "未下架" } # 默认是未下架

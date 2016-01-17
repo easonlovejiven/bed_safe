@@ -2,6 +2,8 @@ class ProductsController < ApplicationController
 
 	before_action :get_product, only: [:edit, :show, :destroy, :update, :change_top_and_down, :change_discount]
 	before_action :get_type, only: [:new, :create, :edit, :update, :show, :index]
+	before_action :get_user, only: [:new, :create, :edit, :update, :show, :index]
+	before_action :get_product_user, only: [:index]
 	
 	def index
 		@q = Product.ransack(params[:q])
@@ -57,12 +59,17 @@ class ProductsController < ApplicationController
     render text: "ok"
 	end
 
+	def search_user
+    users = User.search_by(params[:q], 5).map{|u| u.attributes.slice("id", "username")}
+    render json: {users: users, q: params[:q]}
+	end
+
 	def show
 	end
 
 	private
 	def product_params
-		params.require(:product).permit(:name, :price, :discount, :top_and_down, :product_date, :type_id, :image, :describtion)
+		params.require(:product).permit(:name, :price, :discount, :top_and_down, :product_date, :type_id, :image, :describtion, :user_id)
 	end
 
 	def get_product
@@ -71,5 +78,13 @@ class ProductsController < ApplicationController
 
   def get_type
   	@types = Type.pluck("name", "id")
+  end
+
+  def get_user
+    @users = User.pluck("username", "id")
+  end
+
+  def get_product_user
+  	@product_user = params[:q].present? && params[:q][:user_id_eq].present? ? User.where(id: params[:q][:user_id_eq]).pluck(:id, :username).flatten : []
   end
 end

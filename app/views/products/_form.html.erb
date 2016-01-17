@@ -39,6 +39,12 @@
       </td>
     </tr>
     <tr>
+      <td class="field">生产者:</td>
+      <td>
+        <%= f.select :user_id, options_for_select(@users, params[:user_id]) %>
+      </td>
+    </tr>
+    <tr>
       <td class="field">上传图片:</td>
       <td>
         <%= f.text_field :image, size: 20 %>

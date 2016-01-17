@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20160114103536) do
     t.integer  "type_id",      limit: 4
     t.string   "image",        limit: 255
     t.text     "describtion",  limit: 65535
+    t.integer  "user_id",      limit: 4
   end
 
   create_table "students", force: :cascade do |t|

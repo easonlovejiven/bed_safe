@@ -34,6 +34,11 @@
 		</tr>
 
 		<tr>
+			<td class="field">生产者:</td>
+			<td><%= @product.user.try(:username) %></td>
+		</tr>
+
+		<tr>
 			<td class="field">图片:</td>
 			<td><%= @product.image.present? ? image_tag(@product.image, width: 200, height: 200) : "暂无图片！" %><br/></td>
 		</tr>
