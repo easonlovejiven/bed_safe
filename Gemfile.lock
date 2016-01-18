@@ -172,6 +172,7 @@ GEM
       i18n
       polyamorous (~> 1.1)
     rdoc (4.2.0)
+    redcarpet (3.1.2)
     sass (3.4.19)
     sass-rails (5.0.4)
       railties (>= 4.0.0, < 5.0)
@@ -232,6 +233,7 @@ DEPENDENCIES
   pry
   rails (= 4.2.4)
   ransack (~> 1.5.0)
+  redcarpet (~> 3.1.2)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   simple_form

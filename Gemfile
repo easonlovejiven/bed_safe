@@ -30,6 +30,9 @@ gem 'mini_magick', '3.7.0'
 gem 'carrierwave-azure', '0.0.3'
 gem 'carrierwave-mongoid'
 
+# 项目中生成rails api和guide
+gem 'redcarpet', '~> 3.1.2'
+
 #搜索
 gem 'ransack', '~> 1.5.0' # search
 
