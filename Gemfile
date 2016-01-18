@@ -3,6 +3,8 @@ source 'https://ruby.taobao.org'
 gem 'rails', '4.2.4'
 # Use mysql as the database for Active Record
 gem 'mysql2', '~> 0.3.18'
+
+gem 'hiredis'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -30,6 +32,23 @@ gem 'mini_magick', '3.7.0'
 gem 'carrierwave-azure', '0.0.3'
 gem 'carrierwave-mongoid'
 
+gem 'grape-rails-cache'
+
+# 缓存系统
+gem 'redis-objects'
+gem 'redis-namespace'
+gem 'redis-rails'
+gem 'redis-activesupport'
+
+# 异步和定时任务
+gem 'resque', '~> 1.25.1', require: 'resque/server'
+gem 'resque-scheduler', '3.0.0'
+gem 'resque-dynamic-queues'
+gem 'resque-retry'
+
+# yaml配置信息
+gem 'settingslogic', '~> 2.0.9'
+
 # 项目中生成rails api和guide
 gem 'redcarpet', '~> 3.1.2'
 
@@ -50,6 +69,7 @@ gem 'pry'
 
 group :development, :test do
   gem 'byebug'
+  gem 'newrelic-redis'
 end
 
 group :development do
