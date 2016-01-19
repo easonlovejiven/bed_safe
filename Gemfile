@@ -39,6 +39,14 @@ gem 'simple_form'
 gem "paperclip", "~> 4.3"
 # has_secure_password
 gem 'bcrypt', '~> 3.1.10'
+# elaticsearch
+gem 'elasticsearch-rails'
+gem 'elasticsearch-persistence', require: 'elasticsearch/persistence/model'
+# ES Rails 4.2升级之后报错 cannot load such file -- descendants_tracker
+gem 'descendants_tracker'
+# elaticsearch.rb加载的gem # Http client
+gem 'faraday'
+gem 'typhoeus', '0.8.0'
 # 调试
 gem 'pry'
 group :development, :test do
