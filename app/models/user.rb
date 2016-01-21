@@ -11,6 +11,10 @@ class User < ActiveRecord::Base
   has_many :products
 	GENDERS = {"男" => true, "女" => false}.invert
 
+	# 双向关系 可以 user.product_products 得到这个人所有生产的产品  user.deliver_products 得到这个人所有配送的产品
+  # has_many :product_products, foreign_key: :product_product_id, class_name: 'Product', dependent: :destroy
+  # has_many :deliver_products, foreign_key: :deliver_product_id, class_name: 'Product', dependent: :destroy
+
 	def generate_token(column)
 		begin
 			self[column] = SecureRandom.urlsafe_base64
