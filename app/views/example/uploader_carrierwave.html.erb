@@ -1,80 +1,4 @@
-<%= render 'layouts/header' %>
-<span class="title_right">
-  <%= link_to "返回列表", products_path %>
-</span>
-<%= form_for @product do |f| %>
-<table class="grid_form">
-  <tbody>
-    <tr>
-      <td class="field"><b>*</b>名称:</td>
-      <td>
-        <%= f.text_field :name %>
-      </td>
-    </tr>
-    <tr>
-      <td class="field"><b>*</b>价格:</td>
-      <td>
-        <%= f.text_field :price %>
-      </td>
-    </tr>
-    <tr>
-      <td class="field"><b>*</b>折扣:</td>
-      <td>
-        <%= radio_button("product", "discount", true) %>&nbsp;是&nbsp;&nbsp;
-        <%= radio_button("product", "discount", false) %>&nbsp;否
-        </td>
-      </td>
-    </tr>
-    <tr>
-      <td class="field"><b>*</b>下架:</td>
-      <td>
-        <%= radio_button("product", "top_and_down", false) %>&nbsp;是&nbsp;&nbsp;
-        <%= radio_button("product", "top_and_down", true) %>&nbsp;否
-      </td>
-    </tr>
-    <tr>
-      <td class="field"><b>*</b>产品类型:</td>
-      <td>
-        <%= f.select :type_id, options_for_select(@types, params[:type_id]) %>
-      </td>
-    </tr>
-    <tr>
-      <td class="field">生产者:</td>
-      <td>
-        <%= f.select :user_id, options_for_select(@users, params[:user_id]) %>
-      </td>
-    </tr>
-    <tr>
-      <td class="field">上传图片:</td>
-      <td>
-        <%= f.text_field :image, size: 20 %>
-        <input type="button" id="upload_common_file_btn" value="上传图片"/>
-        <div>
-          <a target="_blank" href="" id="upload_img_a_link"><img src="" id="upload_img" style="max-height:100px"/></a>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td class="field">产品描述:</td>
-      <td>
-        <%= f.text_area :describtion, size: "50x10" %>
-      </td>
-    </tr>
-    <tr>
-      <td class="field"></td>
-      <td>
-        <%= f.submit params[:action] == "edit" ? "修改数据" : "新建数据" %>
-      </td>
-    </tr>
-  </tbody>
-</table>
-<% end -%>
-<%= render 'layouts/footer' %>
-<script type="text/javascript">
-  $("#upload_common_file_btn").uploader({url_field_id: "product_image", a_link_id: "upload_img_a_link", image_show_id: "upload_img"});
-</script>
-
-<!-- uploader + CarrierWave 多图上传 栗子
+<!-- uploader + CarrierWave 多图上传 栗子 -->
 <%= form_for [:admin, @market_templete] do |f| %>
 <table class="grid_form">
   <tbody>
@@ -155,4 +79,3 @@ $(function(){
 })
 
 </script>
--->
