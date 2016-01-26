@@ -179,3 +179,5 @@
   </div>
   <div class="clear"></div>
 </div>
+<!-- link_to 用法 -->
+<%= link_to(@market_templete.img_1.present? ? image_tag(@market_templete.img_1, alt: '下载') : "", mobile_link("/mobile/downloads/redirect?channel=#{params[:channel]}&ts=#{Time.now.to_i}"), title: "app下载", "data-ga-category" => "MO_APP", "data-ga-action" => "Download", "data-ga-label" => @ga_label, target: "_blank", id: "app_down_btn", class: "j_event_tracking") %>
