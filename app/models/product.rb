@@ -22,4 +22,11 @@ class Product < ActiveRecord::Base
   #scope :get_type, -> (product_id){Product.where("id = ?",product_id)}
   #Product::scope_name 调用方式
 
+  #scope :sort_desc, -> { order(id: :desc) }
+  # scope :deleted, -> { where deleted: true }
+  # scope :undeleted, -> { where deleted: false }
+  # scope :top, -> { where commentable_ids: nil }
+  # scope :created_gte, ->(time) { where("created_at >= ?", time) }
+  # scope :id_lt, -> (id) { where("id < ?", id) if id > 0 }
+
 end
