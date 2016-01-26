@@ -2,6 +2,8 @@
 	<%= search_form_for @q do |f| %>
 	  <%= f.text_field :name_cont, placeholder: '请输入产品名称' %>
 		<%= f.select :type_id_eq, options_for_select(@types, params[:type_id]) %>
+        <%= f.select :id, options_for_select(@products.collect{|product| [product.name, product.id]}) %>
+
 		<%= text_field_tag :created_at_gteq, params[:created_at_gteq], class: "datetimepicker", placeholder: "入库时间大于", "data-date-format" => "yyyy-mm-dd" %>
     ~	
     <%= text_field_tag :created_at_lteq, params[:created_at_lteq], class: "datetimepicker", placeholder: "入库时间小于", "data-date-format" => "yyyy-mm-dd" %>

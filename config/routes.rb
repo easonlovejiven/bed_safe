@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     collection do
       post :ajax_del_product
       get :search_user
+      post :fetch_products
     end
   end
   resources :uploaders, only: [:create]

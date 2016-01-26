@@ -1,0 +1,9 @@
+$("#q_id").empty();
+
+<% if @stafferss.blank? %>
+  $("#q_id").append("<option value=''>暂无产品</option>");
+<% end %>
+
+<% @productss.each do |product| %>
+  $("#q_id").append("<option value='<%= product.name %>'><%= product.name %></option>");
+<% end %>

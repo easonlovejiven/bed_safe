@@ -77,6 +77,10 @@
 	      $("#producter").next().children().children().children().first().get(0).innerHTML = "发送者"
 	    });
 	  }
+
+	  $("#q_type_id_eq").change(function(){
+       $.post('/products/fetch_products?type_id=' + $(this).val());
+     });
 	});
 
  // 生产者

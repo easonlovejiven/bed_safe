@@ -26,6 +26,11 @@ class ProductsController < ApplicationController
     end
   end
 
+  def fetch_products
+  	@productss = Product.where(type_id: params[:type_id])
+    #render :aaa #fetch_products  (js/html)模版
+  end
+
   # 改成ajax批量删除
 	# <%= link_to '删除', p, method: :delete, data: {confirm: "你确定删除吗？"} %>
 	# def destroy
