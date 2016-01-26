@@ -29,4 +29,11 @@ class Product < ActiveRecord::Base
   # scope :created_gte, ->(time) { where("created_at >= ?", time) }
   # scope :id_lt, -> (id) { where("id < ?", id) if id > 0 }
 
+  # 回调用法
+  before_save :change_count, if: :discount
+
+  def change_count
+    # 如果是有折扣的话，然后做另外的处理(其它回调方法的用法都一样)
+  end
+
 end
