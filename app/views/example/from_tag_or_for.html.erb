@@ -1,0 +1,181 @@
+<!-- from_for -->
+<%= form_for [:admin, @channel_code], html: {onsubmit: "return checkFormValid();"} do |f| -%>
+  <table class="grid_form">
+    <tbody>
+
+      <tr>
+        <td class="field"><b>*</b><%= f.label :code, '推广媒体:' %></td>
+        <td><%= f.text_field :media, size: 30 %> 
+        <br/>比如 sina, sohu, sogou, baidu, 不能为空
+        </td>
+      </tr>
+
+      <tr>
+        <td class="field"><b></b><%= f.label :code, '推广类型:' %></td>
+        <td>
+          <%= f.select(:ad_type, grouped_options_for_select(ChannelCode::AD_TYPES, @channel_code.ad_type), prompt: "请选择") %>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="field"><b></b><%= f.label :code, '注册统计渠道号:' %></td>
+        <td><span id="code_demo" class='red'></span>
+        <br/>格式: {推广媒体}_{推广类型}
+        <br/>例如: baidu_sem, baidu_seo
+        </td>
+      </tr>
+
+      <tr>
+        <td class="field"><b></b><%= f.label :code, '推广链接:' %></td>
+        <td><span id="url_demo"></span>
+        <br/>以下是格式说明: 
+        <br/>http://m.caishuo.com/market/download?channel={注册统计渠道号}&hmsr={推广媒体}&hmmd={推广类型}&hmpl={计划名}&hmkw={关键字}&hmci={创意}
+        </td>
+      </tr>
+
+      <tr>
+        <td class="field"><b>*</b>是否显示描述信息:</td>
+        <td>
+          <%= radio_button("channel_code", "show_desc", true) %>&nbsp;是&nbsp;&nbsp;
+          <%= radio_button("channel_code", "show_desc", false) %>&nbsp;否
+        </td>
+      </tr>
+      <tr>
+        <td class="field"><b>*</b>选择模版:</td>
+        <td>
+          <% first_templete = MarketTemplete.first %>
+          <% @market_templetes.each do |mt| %>
+            <div class="download">
+              <p class="radio">
+                <% if params[:action] == "new" %>
+                  <%= radio_button("channel_code", "market_templete_id", mt.id, checked: mt.id==first_templete.id ? true : false) %>
+                <% else params[:action] == "edit" || params[:action] == "update" %>
+                  <%= radio_button("channel_code", "market_templete_id", mt.id) %>
+                <% end %>
+              </p>
+              <p class="image">
+                <%= mt.img_1.present? ? image_tag(mt.img_1, width: 150) : "" %><br/>
+                <%= mt.img_2.present? ? image_tag(mt.img_2, width: 150) : "" %><br/>
+                <%= mt.img_3.present? ? image_tag(mt.img_3, width: 150) : "" %><br/>
+              </p>
+            </div>
+          <% end %>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="field"><b>*</b>是否全屏:</td>
+        <td>
+          <%= radio_button("channel_code", "full_screen", true, class: "top_tree_true") %>&nbsp;是&nbsp;&nbsp;
+          <%= radio_button("channel_code", "full_screen", false, class: "top_tree_false") %>&nbsp;否&nbsp;&nbsp;&nbsp;
+          <span id="change_area">
+            选择下载区域:&nbsp;&nbsp;
+            <%= f.check_box :change_above, class: "bottom_tree_area" %> 顶部 &nbsp;&nbsp;
+            <%= f.check_box :change_middle, class: "bottom_tree_area" %> 中间 &nbsp;&nbsp;
+            <%= f.check_box :change_below, class: "bottom_tree_area" %> 底部
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td class="field"><%= f.label :code, '是否开启:' %></td>
+        <td><%= f.check_box :status, {}, 1, 0 %> 选中开启
+        </td>
+      </tr>
+      <tr>
+        <td class="field"></td>
+        <td>
+          <%= f.submit '提交' %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<% end -%>
+
+<!-- form_tag(1) -->
+<%= form_tag "/admin/mobile_banners", onsubmit: "return checkFormValid();" do %>
+  <table class="grid_form">
+    <tbody>
+      <tr>
+        <td>上传banner：</td>
+        <td>
+          <%= text_field_tag :image_url, "", size: 20 %>
+          <input type="button" id="upload_common_file_btn" value="上传图片"/>
+          <div>
+            <a target="_blank" href="" id="upload_img_a_link"><img src="" id="upload_img" style="max-height:100px"/></a>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>banner类型：</td>
+        <td>
+          <%= select_tag :banner_type, options_for_select(MobileRecommend::TYPE) %>
+        </td>
+      </tr>
+      <tr>
+        <td>链接到：</td>
+        <td><%= text_field_tag :banner_url, "", size: 50 %></td>
+      </tr>
+
+      <tr>
+        <td><input type="submit" value="保存"/></td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>
+<!-- form_tag(2) -->
+<%= form_tag "/admin/aces/update_all", method: "PUT" do %>
+  <table class="grid">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>用户id</th>
+        <th>展示类型</th>
+        <th>标签</th>
+        <th>组合id</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @aces.each_with_index do |ace, i| %>
+        <tr>
+          <td><%= i+1 %><%= hidden_field_tag "ace[][id]", i+1 %></td>
+          <td>
+            <%= text_field_tag "ace[][user_id]", ace.user_id %>
+          </td>
+          <td>
+            <%= select_tag "ace[][value_type]", options_for_select(Ace::VALUE_TYPE, ace.value_type) %>
+          </td>
+          <td>
+            <%= text_field_tag "ace[][tag]", ace.tag %><br/>
+          </td>
+          <td>
+            <%= text_field_tag "ace[][basket_id]", ace.basket_id %><br/>
+          </td>
+        </tr>
+      <% end %>
+      <tr>
+        <td colspan="4"><%= submit_tag "确定" %><br/></td>
+      <tr>
+    </tbody>
+  </table>
+<% end -%>
+<!--form_tag 搜索 -->
+<%= form_tag admin_adjusted_stocks_path, method: "get", class: 'form-inline', role: 'form' do -%>
+    大赛：<%= select_tag :contest, options_for_select([["虚拟大赛", "2"], ["实盘大赛", "3"]], params[:contest]) %>
+    类型：<%= select_tag :type, options_for_select([["加仓", "add"], ["减仓", "reduce"]], params[:type]) %>
+    开始时间：<input type="text" class="Wdate" name="start_time" id="start_time" size="30" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" value="<%= @start_time.to_s(:db) %>" />
+    结束时间：<input type="text" class="Wdate" name="end_time" id="end_time" size="30" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" value="<%= @end_time.to_s(:db) %>" />
+    <input type="submit" value="检索" />
+  <% end %>
+  <!-- form_tag -->
+<div class="box">
+  <div class="box-item pull-left">
+    <%= form_tag(import_c_name_admin_base_stocks_path, class: "form-inline", role: "form", multipart: true) do %>
+        <%= file_field_tag 'file', class: "form-control" %>
+      <%= submit_tag "导入", class: "btn btn-default" %>
+    <% end %>
+  </div>
+  <div class="box-item pull-left">
+  导出: <%= link_to "CSV", admin_base_stocks_path(params.merge(format: :csv))%> | <%= link_to "XLS", admin_base_stocks_path(params.merge(format: :xls))%>
+  </div>
+  <div class="clear"></div>
+</div>
