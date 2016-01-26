@@ -16,4 +16,10 @@ class Product < ActiveRecord::Base
   # 按照日期进行搜索
   scope :created_at_gte, -> (date_str) { date_str.present? ? where('created_at >= ?', Date.parse(date_str)) : all }
   scope :created_at_lte, -> (date_str) { date_str.present? ? where('created_at <= ?', Date.parse(date_str) + 1) : all }
+
+  # scope 用法
+  #scope :area, -> {where("id > 2")} #scope 没有参数的
+  #scope :get_type, -> (product_id){Product.where("id = ?",product_id)}
+  #Product::scope_name 调用方式
+
 end
