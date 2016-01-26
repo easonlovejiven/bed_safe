@@ -36,4 +36,10 @@ class Product < ActiveRecord::Base
     # 如果是有折扣的话，然后做另外的处理(其它回调方法的用法都一样)
   end
 
+  after_initialize :new_product
+
+  def new_product
+    binding.pry
+  end
+
 end
