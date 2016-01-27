@@ -9,6 +9,7 @@ class ProductsController < ApplicationController
 		@q = Product.ransack(params[:q])
 		@q = Product.created_at_gte(params[:created_at_gteq]).created_at_lte(params[:created_at_lteq]).search(params[:q])
 		@products = @q.result.paginate(page: params[:page], per_page: 5).order('id DESC')
+		@products = @products.where(type_id: params[:type_id]) if params[:type_id].present? #点击不同产品类型找到相关的产品
 	end
 
 	def new	
