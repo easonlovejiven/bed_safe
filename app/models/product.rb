@@ -41,4 +41,10 @@ class Product < ActiveRecord::Base
   #   # 初始化时候出发这个回调(读取/new)
   # end
 
+  # 在这儿做属性的处理的话，在查询的时候，读取对象.属性的时候会调用这个方法，默认会去找这个属性
+  def price
+    self.price.to_f
+  end
+
+
 end
