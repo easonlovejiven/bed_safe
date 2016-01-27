@@ -48,6 +48,13 @@ class ProductsController < ApplicationController
 		end
 	end
 
+	
+  # def create
+  #    @forbidden_name = ForbiddenName.create(word: params[:word].to_s.strip)
+  #    notice = @forbidden_name.valid? ? "创建成功" : "已存在"
+  #    redirect_to admin_forbidden_names_path, notice: notice
+  #  end
+
 	def change_top_and_down
 		@product.top_and_down? ? @product.update(top_and_down: false) : @product.update(top_and_down: true)
     redirect_to :back
