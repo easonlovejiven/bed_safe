@@ -61,9 +61,9 @@ class Product < ActiveRecord::Base
   # end
 
   # 在这儿做属性的处理的话，在查询的时候，读取对象.属性的时候会调用这个方法，默认会去找这个属性
-  # def price
-  #   self.price.to_f
-  # end
+  def price
+    super || 0.0
+  end
 
 
 end
