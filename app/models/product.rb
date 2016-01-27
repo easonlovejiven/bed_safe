@@ -30,16 +30,15 @@ class Product < ActiveRecord::Base
   # scope :id_lt, -> (id) { where("id < ?", id) if id > 0 }
 
   # 回调用法
-  before_save :change_count, if: :discount
 
-  def change_count
-    # 如果是有折扣的话，然后做另外的处理(其它回调方法的用法都一样)
-  end
+  # before_save :change_count, if: :discount  条件回调
+  # def change_count
+  #   # 如果是有折扣的话，然后做另外的处理(其它回调方法的用法都一样)
+  # end
 
-  after_initialize :new_product
-
-  def new_product
-    binding.pry
-  end
+  # after_initialize :new_product  初始化回调
+  # def new_product
+  #   # 初始化时候出发这个回调(读取/new)
+  # end
 
 end
