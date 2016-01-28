@@ -61,8 +61,13 @@ class Product < ActiveRecord::Base
   # end
 
   # 在这儿做属性的处理的话，在查询的时候，读取对象.属性的时候会调用这个方法，默认会去找这个属性
-  def price
-    super || 0.0
+  # def price
+  #   super || 0.0
+  # end
+
+  #遍历的时候给每个对象的describtion属性add一条附加信息
+  def describtion
+    super + "附加信息"
   end
 
 
