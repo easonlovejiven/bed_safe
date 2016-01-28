@@ -78,6 +78,7 @@ class ProductsController < ApplicationController
 	end
 
 	def show
+		@product.increment!(:views_count)
 	end
 
 	private

@@ -26,6 +26,7 @@
 			<th>生产者</th>
 			<th>产品图片</th>
 			<th>产品描述</th>
+			<th>访问次数</th>
 			<th width="16%">操作</th>
 		</tr>
 		<% @products.each do |p| %>
@@ -46,6 +47,7 @@
 					<%= p.image.present? ? image_tag(p.image, width: 100, height: 100) : "暂无图片！" %>
 				</td>
 				<td class="describtion"><%= p.describtion %></td>
+				<td><%= p.views_count.to_i %></td>
 				<td class="action">
           <%= link_to '详情', p %>
           <%= link_to '编辑', [:edit, p] %>
@@ -54,7 +56,7 @@
 				</td>
 			</tr>
 		<% end %>
-		<%= blank_table(12) if @products.blank? -%>
+		<%= blank_table(13) if @products.blank? -%>
 	</table>	
 <%= render 'layouts/footer' %>
 <%= will_paginate @products %>
