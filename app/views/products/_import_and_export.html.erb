@@ -1,0 +1,12 @@
+<div class="box">
+  <div class="box-item pull-left">
+    <%= form_tag(import_c_name_admin_base_stocks_path, class: "form-inline", role: "form", multipart: true) do %>
+        <%= file_field_tag 'file', class: "form-control" %>
+      <%= submit_tag "导入", class: "btn btn-default" %>
+    <% end %>
+  </div>
+  <div class="box-item pull-left">
+  导出: <%= link_to "CSV", admin_base_stocks_path(params.merge(format: :csv))%> | <%= link_to "XLS", admin_base_stocks_path(params.merge(format: :xls))%>
+  </div>
+  <div class="clear"></div>
+</div>

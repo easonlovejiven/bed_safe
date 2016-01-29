@@ -10,6 +10,12 @@ class ProductsController < ApplicationController
 		@q = Product.created_at_gte(params[:created_at_gteq]).created_at_lte(params[:created_at_lteq]).search(params[:q])
 		@products = @q.result.paginate(page: params[:page], per_page: 5).order('id DESC')
 		@products = @products.where(type_id: params[:type_id]) if params[:type_id].present? #点击不同产品类型找到相关的产品
+
+	# respond_to do |format|
+  #   format.html 
+  #   format.csv { send_data @base_stocks.to_csv }
+  #   format.xls { send_data @base_stocks.to_csv(col_sep: "\t") }
+  # end
 	end
 
 	def new	
@@ -47,6 +53,21 @@ class ProductsController < ApplicationController
 	  	render :new
 		end
 	end
+
+	# 导入csv, xls, xlsx
+	def import_c_name
+    if !params[:file].nil?
+      begin
+        BaseStock.import_c_name(params[:file])
+        message = "导入成功"
+      rescue Exception => e
+        message = "导入失败，请确认文件类型为csv、xls或xlsx"
+      end
+    else
+      message = "请选择文件"
+    end
+    redirect_to admin_base_stocks_path, notice: message
+  end
 
 	
   # def create
