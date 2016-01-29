@@ -18,6 +18,9 @@ class Product < ActiveRecord::Base
   scope :created_at_gte, -> (date_str) { date_str.present? ? where('created_at >= ?', Date.parse(date_str)) : all }
   scope :created_at_lte, -> (date_str) { date_str.present? ? where('created_at <= ?', Date.parse(date_str) + 1) : all }
 
+  # 统计不同类型的产品数量
+  scope :type_count, -> (type_id){where("type_id = ?", type_id).count }
+
   # 对录入产品信息做个验证
   def describtion_validates
     self.errors.add(:describtion, "产品描述输入有误，请重新录入！") if self.describtion.present? && !self.describtion.include?("值得信任！")
@@ -38,7 +41,7 @@ class Product < ActiveRecord::Base
 
   # scope 用法
   #scope :area, -> {where("id > 2")} #scope 没有参数的
-  #scope :get_type, -> (product_id){Product.where("id = ?",product_id)}
+  #scope :get_type, -> (product_id){where("id = ?",product_id)}
   #Product::scope_name 调用方式
 
   #scope :sort_desc, -> { order(id: :desc) }

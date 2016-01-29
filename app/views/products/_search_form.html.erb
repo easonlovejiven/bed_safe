@@ -11,6 +11,6 @@
     <%= f.submit "搜索" %>
  	<% end %>
   <% @types.each do |type| %>
-      <a href="/products?type_id=<%= type[1] %>"><%= type[0] %></a>
+      <a href="/products?type_id=<%= type[1] %>"><%= type[0] %>(<%= Product.type_count(type[1]) %>)</a>
     <% end %>
 </div>
