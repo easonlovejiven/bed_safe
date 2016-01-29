@@ -17,8 +17,8 @@
         <input type="checkbox" class="top_tree">
       </th>
 			<th>ID</th>
-			<th>名称</th>
-			<th>价格</th>
+			<%= content_tag :th, sort_link(@q, :name, '名称') %>
+			<%= content_tag :th, sort_link(@q, :price, '价格') %>
 			<th>是否有折扣</th>
 			<th>上下架</th>
 			<th width="20%">入库时间</th>
