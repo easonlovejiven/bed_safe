@@ -73,6 +73,7 @@ class Product < ActiveRecord::Base
     super + "附加信息"
   end
 
+  # 导入导出文件
   class << self
     def import_c_name(file)
       spreadsheet = open_spreadsheet(file)
