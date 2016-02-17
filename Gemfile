@@ -31,6 +31,9 @@ gem 'resque-retry'
 gem 'settingslogic', '~> 2.0.9'
 # 项目中生成rails api和guide
 gem 'redcarpet', '~> 3.1.2'
+# 面向组件开发
+gem 'cells', "~> 4.0.0"
+gem "cells-erb"
 #搜索
 gem 'ransack', '~> 1.5.0' # search
 # 表单和客户端验证

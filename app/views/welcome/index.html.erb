@@ -4,6 +4,7 @@
 	<p>
 		<span><%= link_to '登陆', signin_path %></span>
 		<span><%= link_to '注册', signup_path %></span>
+		<span><%= cell(:admin_dashboard).(:product_information) %></span>
 	</p>
 </p>
 <%= render partial: 'layouts/footer' %>
