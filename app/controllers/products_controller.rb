@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
 
+  #skip_before_action :verify_authenticity_token # 防止cfrs 攻击(from表单post提交时会遇到这种状况)
 	before_action :get_product, only: [:edit, :show, :destroy, :update, :change_top_and_down, :change_discount]
 	before_action :get_type, only: [:new, :create, :edit, :update, :show, :index]
 	before_action :get_user, only: [:new, :create, :edit, :update, :show, :index]
