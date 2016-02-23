@@ -2,6 +2,9 @@ class Product < ActiveRecord::Base
 	belongs_to :type
 	belongs_to :user
   validate :describtion_validates
+  validates :name, presence: { message: "不能为空！" },
+            uniqueness: { message: "不能重复！" },
+            length: { minimum: 2, maximum: 20, message: "长度不正确[建议长度2-20]" }
 
 	# 有命名空间
 	# belongs_to :sender_staffer, class_name: "Admin::Staffer", foreign_key: :sender_staffer_id #生产者
@@ -69,9 +72,9 @@ class Product < ActiveRecord::Base
   # end
 
   #遍历的时候给每个对象的describtion属性add一条附加信息
-  def describtion
-    super + "附加信息"
-  end
+  # def describtion
+  #   super + "附加信息"
+  # end
 
   # 导入导出文件
   class << self
