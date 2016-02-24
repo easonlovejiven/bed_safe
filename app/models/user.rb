@@ -33,5 +33,8 @@ class User < ActiveRecord::Base
       errors[:base] << "邮箱和手机号不能同时为空!"
     end
   end
+
+  # enum的用法总结 如果usert里边儿有个列status,系统会自动创建三个status_1..的类方法，，类名.status_1就会找到所有satus_1=1的记录
+  enum status: {status_1: 1, status_2: 2, status_3: 3}
   
 end
