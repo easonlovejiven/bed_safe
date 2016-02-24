@@ -52,6 +52,8 @@ gem 'faraday'
 gem 'typhoeus', '0.8.0'
 # 调试
 gem 'pry'
+# Hash ID, 用来生成加密ID，来保护数据库id, 需保证可逆加密
+gem 'hashids'
 group :development, :test do
   gem 'byebug'
   gem 'newrelic-redis'
