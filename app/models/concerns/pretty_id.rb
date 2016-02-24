@@ -6,9 +6,6 @@ require 'hashids'
 # 
 # 调用方式:
 #   Caishuo::Utils::Encryption.pretty_id(datas)
-module Caishuo::Utils::Encryption
-
- 
   class PrettyId
 
     SALT = 'cawi23s43!hu*o'
@@ -30,5 +27,3 @@ module Caishuo::Utils::Encryption
      
     end
   end
-
-end

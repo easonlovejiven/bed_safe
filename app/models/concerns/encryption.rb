@@ -6,19 +6,16 @@
 module Encryption
   class << self
 
-    # Caishuo::Utils::Encryption.md5(datas)
     def md5(datas)
-      BedSafe::Utils::Encryption::MD5.encode(datas)
+      Encryption::MD5.encode(datas)
     end
 
-    # Caishuo::Utils::Encryption.pretty_id(obj_id)
     def pretty_id(obj_id)
-      BedSafe::Utils::Encryption::PrettyId.encode(obj_id)
+      PrettyId.encode(obj_id)
     end
 
-    # Caishuo::Utils::Encryption.decode_pretty_id(obj_id)
     def decode_pretty_id(obj_id)
-      BedSafe::Utils::Encryption::PrettyId.decode(obj_id)
+      PrettyId.decode(obj_id)
     end
 
   end
