@@ -5,6 +5,12 @@ class ProductsController < ApplicationController
 	before_action :get_type, only: [:new, :create, :edit, :update, :show, :index]
 	before_action :get_user, only: [:new, :create, :edit, :update, :show, :index]
 	before_action :get_product_user, only: [:index]
+
+  # 批量加标题
+  # before_action only: [:show, :invite] do
+  #   @page_title = "邀好友，得奖励"
+  #   @price = UserInviteLog::RULE.price
+  # end
 	
 	def index
 		@q = Product.ransack(params[:q])
