@@ -10,5 +10,10 @@ module BedSafe
     jquery.ui.datepicker-zh-CN.js select2.full.min.js select2.min.css)
     config.active_record.raise_in_transactional_callbacks = true
     config.i18n.default_locale = 'zh-CN'
+
+    # mysql mongo环境切换
+    config.generators do |g|
+  		g.orm :active_record
+		end
   end
 end
