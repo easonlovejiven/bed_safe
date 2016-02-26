@@ -16,32 +16,32 @@ class Page
 end
 
 # controller层
-class PagesController < ApplicationController
+# class PagesController < ApplicationController
 
-	def show
-		send(params[:type])
-	end
+# 	def show
+# 		send(params[:type])
+# 	end
 
-	def topics
-		result_type
-	end
+# 	def topics
+# 		result_type
+# 	end
 
-	def articles
-		result_articles
-	end
+# 	def articles
+# 		result_articles
+# 	end
 
-	def announcements
-		result_announcements
-	end
+# 	def announcements
+# 		result_announcements
+# 	end
 
-	def news
-		result_news
-	end
+# 	def news
+# 		result_news
+# 	end
 
-end
+# end
 
 # routes层
-get 'xxxxx/pages/:type/:id' => "xxxxx/pages#show"
+# get 'xxxxx/pages/:type/:id' => "xxxxx/pages#show"
 
 # view层
 

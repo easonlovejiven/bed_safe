@@ -21,4 +21,5 @@ Rails.application.routes.draw do
     end
   end
   resources :uploaders, only: [:create]
+  get 'pages/:type/:id' => "pages#show"
 end
