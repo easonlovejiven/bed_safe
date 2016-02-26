@@ -1,7 +1,20 @@
 class PagesController < ApplicationController
 
 	def show
-		send(params[:type])
+		type = params[:type]
+		case type
+		when type == "topics"
+			topics
+		when type == "articles"
+			articles
+		when type == "announcements"
+			announcements
+		when news == "news"
+			news
+		else
+			unknown
+		end
+		#send(params[:type])
 	end
 
 	private
@@ -20,6 +33,10 @@ class PagesController < ApplicationController
 
 	def news
 		@type = "news"
+	end
+
+	def unknown
+		@type = "扩展中......"
 	end
 
 end
