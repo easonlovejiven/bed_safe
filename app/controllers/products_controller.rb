@@ -13,6 +13,7 @@ class ProductsController < ApplicationController
   # end
 	
 	def index
+    @page_title = "产品集合"
 		@q = Product.ransack(params[:q])
 		@q = Product.created_at_gte(params[:created_at_gteq]).created_at_lte(params[:created_at_lteq]).search(params[:q])
 		@products = @q.result.paginate(page: params[:page], per_page: 5).order('id DESC')
@@ -106,6 +107,7 @@ class ProductsController < ApplicationController
 	end
 
 	def show
+    @page_title = "产品明细"
 		@product.increment!(:views_count)
 	end
 
