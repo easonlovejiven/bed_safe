@@ -3,13 +3,13 @@ class PagesController < ApplicationController
 	def show
 		type = params[:type]
 		case type
-		when type == "topics"
+		when "topics"
 			topics
-		when type == "articles"
+		when "articles"
 			articles
-		when type == "announcements"
+		when "announcements"
 			announcements
-		when news == "news"
+		when "news"
 			news
 		else
 			unknown
