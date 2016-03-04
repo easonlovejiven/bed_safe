@@ -18,6 +18,8 @@ class ProductsController < ApplicationController
 		@q = Product.created_at_gte(params[:created_at_gteq]).created_at_lte(params[:created_at_lteq]).search(params[:q])
 		@products = @q.result.paginate(page: params[:page], per_page: 5).order('id DESC')
 		@products = @products.where(type_id: params[:type_id]) if params[:type_id].present? #点击不同产品类型找到相关的产品
+    # 解决英文下划线问题(ransack存在的问题)
+    # ChannelCode.where("code like '%\\_%'").count 需要两个转义字符
 
 	# respond_to do |format|
   #   format.html 
