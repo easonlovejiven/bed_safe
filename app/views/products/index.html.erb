@@ -42,7 +42,7 @@
 				<td><%= Product::TOP_AND_DOWN[p.top_and_down] %></td>
 				<td><%= p.created_at.to_s %></td>
 				<td><%= p.type.try(:name) %></td>
-				<td><%= p.user.username %></td>
+				<td><%= p.user.try(:username) %></td>
 				<td>
 					<%= p.image.present? ? image_tag(p.image, width: 100, height: 100) : "暂无图片！" %>
 				</td>

@@ -23,6 +23,7 @@ class Product < ActiveRecord::Base
 
   # 统计不同类型的产品数量
   scope :type_count, -> (type_id){where("type_id = ?", type_id).count }
+  # scope :search, -> (search) { where('"products"."name" LIKE ?', "#{sanitize_sql_like(search)}%") }
 
   # 对录入产品信息做个验证
   def describtion_validates
