@@ -5,3 +5,13 @@
     window.parent.$.fn.uploader.success("<%= @upload.url %>");
   <% end %>
 </script>
+<div style="position:relative; left: -550px; top: 100; width: 200px;">
+												  <a href="<%= children.url %>" target="_blank"><%= children.name %></a>
+												</div>
+								        <div style="position:relative; left: -300px; width: 200px;">
+								          <%= children.staffer_id.present? ? children.staffer.fullname : "暂时没有负责人" %>
+								        </div>
+												<div style="position:relative; left: -150px; width: 200px;">
+								        	<a href="#" class="delete_btn" data-id="<%= children.id %>" style="color:red !important;">删除</a>
+								        	<%= link_to "修改", edit_admin_permission_path(children) %>
+								        </div>
